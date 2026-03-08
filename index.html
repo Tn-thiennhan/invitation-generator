@@ -8,6 +8,21 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <script>
+  // Chờ cho đến khi các ô nhập liệu xuất hiện
+  const checkExist = setInterval(function() {
+     // Tìm ô nhập có nhãn là "Mã bài"
+     const inputs = document.querySelectorAll('input');
+     inputs.forEach(input => {
+        // Nếu thấy ô nào đang chứa mã mặc định cũ hoặc để trống mã bài
+        if (input.value === 'cjbm4ahj' || (input.previousElementSibling && input.previousElementSibling.innerText.includes('Mã bài'))) {
+           input.value = 'h0pxm3bh';
+           // Kích hoạt sự kiện để web nhận diện đã nhập mã mới
+           input.dispatchEvent(new Event('input', { bubbles: true }));
+           clearInterval(checkExist);
+        }
+     });
+  }, 100); // Kiểm tra mỗi 0.1 giây
+</script></body>
   </html>
 
